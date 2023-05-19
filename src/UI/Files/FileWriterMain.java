@@ -10,7 +10,7 @@ public class FileWriterMain {
             File myFile = new File("test.txt");
 
             //where to write the file to
-            FileWriter writeToFile = new FileWriter("myFile.txt");
+            FileWriter writeToFile = new FileWriter(myFile);
 
             //method to write to the above
             writeToFile.write(data);
