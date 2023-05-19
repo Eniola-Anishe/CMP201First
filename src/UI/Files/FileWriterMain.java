@@ -1,8 +1,7 @@
 package UI.Files;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class FileWriterMain {
     public void writeData(String data){
@@ -22,6 +21,42 @@ public class FileWriterMain {
         }
         catch(IOException ioException){
             System.out.println("Can not write to this file");
+        }
+    }
+
+
+    public void readFromFile() {
+        try {
+            File myFile = new File("test.txt");
+            Scanner myReader = new Scanner(myFile);
+            while(myReader.hasNext()){
+                String dataInFile = myReader.nextLine();
+                System.out.println(dataInFile);
+            }
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("file does not exist");
+
+        }
+    }
+
+
+    public void appendData(String data){
+        try{
+            File myFile = new File("test.txt");
+            FileWriter fileWriter = new FileWriter(myFile,true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter printWriter=new PrintWriter(bufferedWriter);
+
+            printWriter.println(data);
+//            printWriter.println("More Money More problem");
+//            printWriter.println("NO MONEY STILL PROBLEM");
+
+            printWriter.close();
+            bufferedWriter.close();
+            fileWriter.close();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
